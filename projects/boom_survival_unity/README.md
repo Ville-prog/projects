@@ -6,10 +6,10 @@
 unity asset done by https://github.com/Matthew-J-Spencer/Ultimate-2D-Controller**
 
 ## Demo videos
-# World demo
+# World demo (Youtube video link)
 [![World demo](https://img.youtube.com/vi/sgNlUauDGJA/hqdefault.jpg)](https://www.youtube.com/watch?v=sgNlUauDGJA)
 
-# Gameplay demo
+# Gameplay demo (Youtube video link)
 [![Watch the Demo](https://img.youtube.com/vi/Mctolj3tVOc/hqdefault.jpg)](https://www.youtube.com/watch?v=Mctolj3tVOc)
 
 ## How to Run the Demo
