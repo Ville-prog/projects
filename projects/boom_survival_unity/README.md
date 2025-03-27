@@ -6,10 +6,10 @@
 unity asset done by https://github.com/Matthew-J-Spencer/Ultimate-2D-Controller**
 
 ## Demo videos
-# World demo (Youtube video link)
+# World demo (YouTube video link)
 [![World demo](https://img.youtube.com/vi/sgNlUauDGJA/hqdefault.jpg)](https://www.youtube.com/watch?v=sgNlUauDGJA)
 
-# Gameplay demo (Youtube video link)
+# Gameplay demo (YouTube video link)
 [![Watch the Demo](https://img.youtube.com/vi/Mctolj3tVOc/hqdefault.jpg)](https://www.youtube.com/watch?v=Mctolj3tVOc)
 
 ## How to Run the Demo
@@ -18,9 +18,11 @@ unity asset done by https://github.com/Matthew-J-Spencer/Ultimate-2D-Controller*
 - Windows/MacOS/Linux
 
 ### Steps to Run:
-1. **Clone the Repository**
-   ```bash
-   tbd
+1. **Download** the `demo_build.zip` file from the repository.  
+2. **Extract** the contents to a folder of your choice.  
+3. **Run** the executable:  
+   - On **Windows**, double-click `BoomSurvival.exe`.  
+   - On **Linux/macOS**, give execution permission if needed (`chmod +x BoomSurvival`), then run `./BoomSurvival`.
 
 ## World Generation
 
@@ -148,7 +150,92 @@ The world generation logic has undergone significant evolution, progressing thro
 - **Image:**
 ![Version 7](images/version7.png "Terrain Generation Version 7")
 
-The final terrain generation functionality and code can be found in 
+- **Final terrain generation function in its entirety:**
+    ```csharp
+    void generateBlocks() 
+    {
+        List<Vector2Int> surfaceBlocks = new List<Vector2Int>();
+
+        Sprite blockSprite;
+        MaterialType material;
+
+        for (int x = 0; x < gridSize; x++) 
+        {
+            // Calculate the height of the terrain at this x-coordinate using Perlin noise
+            float height = Mathf.PerlinNoise((x + seed) * terrainFreq, seed * terrainFreq) 
+                * heightMultiplier + heightLevel;
+            
+            for (int y = 0; y < height; y++) 
+            {
+                // caveValue is used to determine wether a block is placed or not
+                // using perlin noise. Empty spots form caves.
+                float caveValue = Mathf.PerlinNoise((x + seed) * caveFreq,
+                 (y + seed) * caveFreq);
+                
+                // Block is placed
+                if (caveValue < caveThreshold) 
+                {
+                    // Grasslevel
+                    if (y == (int)height) 
+                    {
+                        blockSprite = grassSprite;
+                        material = MaterialType.grass;
+                        surfaceBlocks.Add(new Vector2Int(x, y));
+                    }
+                    // Dirtlevel
+                    else if (y < (int)height && y >= (int)height - dirtLayer) 
+                    {
+                        blockSprite = dirtSprite;
+                        material = MaterialType.dirt;
+                    }
+                    // Claylevel
+                    else if (y < (int)height - dirtLayer && 
+                             y >= (int)height - dirtLayer - clayLayer) 
+                    {
+                        blockSprite = claySprite;
+                        material = MaterialType.clay;
+                    }
+                    // Sandlevel
+                    else if (y < (int)height - dirtLayer - clayLayer &&
+                             y >= (int)height - dirtLayer - clayLayer - sandLayer) 
+                    {   
+                        blockSprite = sandSprite;
+                        material = MaterialType.sand;
+                    }
+                    // Sandstonelevel
+                    else if (y < (int)height - dirtLayer - clayLayer - sandLayer &&
+                             y >= (int)height - dirtLayer - clayLayer - sandLayer - sandStoneLayer) 
+                    {
+                        blockSprite = sandStoneSprite;
+                        material = MaterialType.sandStone;
+                    }
+                    // Stonelevel
+                    else if (y < (int)height - dirtLayer - clayLayer - sandLayer - sandStoneLayer &&
+                             y >= (int)height - dirtLayer - clayLayer - sandLayer - sandStoneLayer - stoneLayer) 
+                    {
+                        blockSprite = stoneSprite;
+                        material = MaterialType.stone;
+                    }
+                    // Rest blocks at the bottom are magma
+                    else 
+                    {
+                        blockSprite = magmaSprite;
+                        material = MaterialType.magma;
+                    }
+                    generateBlock(blockSprite, x, y, material);
+                }
+                else 
+                {
+                    // Fill empty spots (caves) with backroundBlocks
+                    generateBlock(caveSprite, x, y, MaterialType.cave, true);
+                }
+            }
+        }
+        generateSurfaceDecoration(surfaceBlocks);
+    }
+
+
+The full terrain generation class can be found in 
 **Assets\Scripts\BlockScript.cs** along with all the other program code files
 in **Assets\Scripts**
 
