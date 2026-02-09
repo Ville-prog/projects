@@ -29,9 +29,9 @@ The game aims to teach players:
 
 ## Demo
 
-A short gameplay demonstration video is available here: 
+A short gameplay demonstration video is available here:
 
-[![Video demo](https://img.youtube.com/vi/DJBVP9b24qY/0.jpg)](https://youtu.be/DJBVP9b24qY)
+[![Cyberquest gameplay demo](https://github.com/user-attachments/assets/7f6851a9-1d7b-4212-8d79-ba2a88ca1c33)](https://youtu.be/DJBVP9b24qY)
 
 ## How to Play
 
