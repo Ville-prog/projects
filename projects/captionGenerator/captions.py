@@ -1,5 +1,6 @@
 """
-Caption Generator
+MIT License
+Copyright (c) 2026 Ville Laaksoaho
 
 Input:  any audio or video file
 Output: SRT file saved in output/ folder next to this script

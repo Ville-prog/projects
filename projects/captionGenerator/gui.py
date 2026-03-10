@@ -1,11 +1,14 @@
 """
-Caption Generator — GUI
+MIT License
+Copyright (c) 2026 Ville Laaksoaho
+
+Caption Generator GUI
 
 Drag-and-drop (or file-picker) desktop application that converts
 an audio or video file into an SRT caption file.
 
 The GUI is built with tkinter and the tkinterdnd2 extension
-for native drag-and-drop support.  All heavy processing: audio
+for native drag-and-drop support. All heavy processing: audio
 extraction, Whisper transcription, caption splitting — is delegated
 to the companion module captions.py.
 
