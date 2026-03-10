@@ -2,6 +2,8 @@
 
 A local, free, and offline tool that generates SRT caption files from any audio or video file using OpenAI's Whisper speech recognition model.
 
+<img width="48%" alt="GUI" src="https://github.com/user-attachments/assets/cbbd22dc-1c8f-481f-8433-037a4d7118cd" /> <img width="48%" alt="GUI2" src="https://github.com/user-attachments/assets/bee30acd-059c-402e-9155-55bec34311dc" />
+
 ## Background
 
 I run a YouTube channel where adding captions to a video manually is a very repetitive and time-consuming task. Most captioning tools are either paywalled or produce poor results. This tool solves that by running entirely on your own machine. No subscriptions no internet connection required after the initial setup.
@@ -65,7 +67,7 @@ python captions.py my_export.wav
 # Split every 4 words
 python captions.py my_export.wav 4
 
-# No splitting — one caption for the whole file
+# No splitting: one caption for the whole file
 python captions.py my_export.wav 0
 ```
 
